@@ -30,8 +30,8 @@ const uint8_t basespeedb = 40;
 
 
 
-#define LechoPin 10// attach pin 6 Arduino to pin Echo of HC-SR04
-#define LtrigPin 11 //attach pin 7 Arduino to pin Trig of HC-SR04
+#define LechoPin 10// attach pin  Arduino to pin Echo of HC-SR04
+#define LtrigPin 11 //attach pin Arduino to pin Trig of HC-SR04
 #define RechoPin 12
 #define RtrigPin 13
 #define DechoPin A1
