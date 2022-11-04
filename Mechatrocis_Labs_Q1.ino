@@ -47,11 +47,8 @@ int Ldistance, Rdistance, Ddistance; // variable for the distance
 //  PID control system variables 
 
 float Kp = 0.1; //related to the proportional control term; 
-              //change the value by trial-and-error (ex: 0.07).
-float Ki = 0,002; //related to the integral control term; 
-              //change the value by trial-and-error (ex: 0.0008).
-float Kd = 0; //related to the derivative control term; 
-              //change the value by trial-and-error (ex: 0.6).
+float Ki = 0,002; //related to the integral control term;               
+float Kd = 0; //related to the derivative control term;               
 int P;
 int I;
 int D;
@@ -96,10 +93,6 @@ void setup() {
 
 void loop() {
   
-  //directionControl();
-  //delay(1000);
-  //speedControl();
-  //delay(1000);
   long Lduration, Rduration, Dduration; // variable for the duration of sound wave travel
   int Ldistance, Rdistance, Ddistance;
 
@@ -132,12 +125,12 @@ if(Rdistance > 20 || Ldistance > 20)
 {
   Speed_setting(0,0);
   if (Ldistance > 40)
-    {Speed_setting(0,50);//tourner a gauche
+    {Speed_setting(0,50);//turn left
     delay(50);
     
      }
   if (Rdistance > 40)
-    {Speed_setting(50,0);//tourner a droite
+    {Speed_setting(50,0);//turn right
     delay(50);
     
      }  
@@ -146,50 +139,21 @@ if(Rdistance > 20 || Ldistance > 20)
 if(Ddistance < 30){
   Speed_setting(0,0);
   if (Ldistance > 40)
-    {Speed_setting(0,50);//tourner a gauche
+    {Speed_setting(0,50);//turn left
     delay(50);
     
      }
   if (Rdistance > 40)
-    {Speed_setting(50,0);//tourner a droite
+    {Speed_setting(50,0);//turn right
     delay(50);
     
      }
 }
 
-  
 
-// if(Ddistance < 50 ) {
-//   Speed_setting(0,0);
-//     if (Ldistance > 40)
-//     {Speed_setting(50,0);
-//     delay(300);
-    
-//      }
-//     if (Rdistance > 40)
-//     {Speed_setting(0,50);
-//     delay(300);
-    
-//      }
-//     }
 PID_control();
 
-// if(abs(Ldistance-Rdistance) > 30) {
-//   Speed_setting(0,0)
-//       if ()
-//       {}
-//     }
-//     else {
-      
-//     }
 
-  // Sets the trigPin HIGH (ACTIVE) for 10 microseconds
-  
-  // Reads the echoPin, returns the sound wave travel time in microseconds
-  
-  // Calculating the distance
-   // Speed of sound wave divided by 2 (go and back)
- 
   // Displays the distance on the Serial Monitor
   Serial.print("Left Distance: ");
   Serial.print(Ldistance);
@@ -208,41 +172,6 @@ PID_control();
   
 }
 
-// This function lets you control spinning direction of motors
-void directionControl() {
-  // Set motors to maximum speed
-  // For PWM maximum possible values are 0 to 255
-  analogWrite(enA, 70);
-  analogWrite(enB, 68);// roue droite
-
-  // Turn on motor A & B
-  digitalWrite(in1, HIGH);
-  digitalWrite(in2, LOW);
-  digitalWrite(in3, HIGH);
-  digitalWrite(in4, LOW);
-  delay(5000);
-
-
-    // Tourner 
-  digitalWrite(in1, HIGH);
-  digitalWrite(in2, LOW);
-  digitalWrite(in3, LOW);
-  digitalWrite(in4, HIGH);
-  delay(5000);
-  
-  // Now change motor directions
-  //digitalWrite(in1, LOW);
-  //digitalWrite(in2, HIGH);
-  //digitalWrite(in3, HIGH);
-  //digitalWrite(in4, LOW);
-  //delay(2000);
-  
-  // Turn off motors
-  digitalWrite(in1, LOW);
-  digitalWrite(in2, LOW);
-  digitalWrite(in3, LOW);
-  digitalWrite(in4, LOW);
-}
 
 void readRightEncoder(){
    //(digitalRead(Right_ENC_A)>0) ? (_RightEncoderTicks--) : (_RightEncoderTicks++);
@@ -284,7 +213,7 @@ _RightEncoderTicks = 0;
   D = error - lastError;
   lastError = error;
   int motorspeed = P*Kp + I*Ki + D*Kd; //calculate the correction
-                                       //needed to be applied to the speed
+                                       
   
   int motorspeeda = basespeeda ;
   int motorspeedb = basespeedb + motorspeed;
